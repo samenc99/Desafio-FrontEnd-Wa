@@ -2,6 +2,8 @@ import {useContext, useEffect, useState} from "react";
 import {Context} from "../../Context/Global";
 import useCoordinator from "../../hooks/useCoordinator";
 import QuestionsController from "../../controller/QuestionsController";
+import RenderQuestions from "../../components/RenderQuestions/RenderQuestions";
+import Container from "../../styled-components/Container";
 
 const questionsController = new QuestionsController()
 
@@ -30,8 +32,11 @@ export default function Questions(){
       toHome()
     }
   }
-  
+
   return(
-    <div>Questions</div>
+    <Container>
+      {questions && <RenderQuestions questions={questions}/>}
+    </Container>
   )
+
 }
