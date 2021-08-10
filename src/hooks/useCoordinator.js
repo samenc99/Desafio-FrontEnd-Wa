@@ -6,7 +6,7 @@ export default function useCoordinator(){
 
   const toHome = ()=> history.push(HOME)
   const toPlay = ()=> history.push(PLAY)
-  const toQuestions = ()=> history.push(QUESTIONS)
+  const toQuestions = ()=> history.replace(QUESTIONS)
 
   return{
     toHome, toPlay, toQuestions

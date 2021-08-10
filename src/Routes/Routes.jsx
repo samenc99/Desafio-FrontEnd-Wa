@@ -1,6 +1,7 @@
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import {HOME, PLAY, QUESTIONS} from "./routesConstants";
 import Home from "../pages/Home/Home";
+import Play from "../pages/Play/Play";
 
 export default function Routes(){
   return(
@@ -10,7 +11,7 @@ export default function Routes(){
           <Home/>
         </Route>
         <Route exact path={PLAY}>
-          <div>play</div>
+          <Play/>
         </Route>
         <Route exact path={QUESTIONS}>
           <div>questions</div>
