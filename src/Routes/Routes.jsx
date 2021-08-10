@@ -2,6 +2,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import {HOME, PLAY, QUESTIONS} from "./routesConstants";
 import Home from "../pages/Home/Home";
 import Play from "../pages/Play/Play";
+import Questions from "../pages/Questions/Questions";
 
 export default function Routes(){
   return(
@@ -14,7 +15,7 @@ export default function Routes(){
           <Play/>
         </Route>
         <Route exact path={QUESTIONS}>
-          <div>questions</div>
+          <Questions/>
         </Route>
         <Route>
           <div>Página não encontrada</div>
