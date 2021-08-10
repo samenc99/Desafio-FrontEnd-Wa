@@ -1,4 +1,4 @@
-import CardQuestion from "../CardQuestion/CardQuestions";
+import CardQuestion from "../CardQuestion/CardQuestion";
 import {useEffect, useState} from "react";
 import IconCategory from "../Icons/IconCategory";
 import Container from "../../styled-components/Container";
@@ -8,6 +8,11 @@ const ContainerIcons = styled.section`
   article{
     display: flex;
   }
+`
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
 export default function RenderQuestions({questions}){
@@ -30,8 +35,10 @@ export default function RenderQuestions({questions}){
 
   return (
     <Container>
-      {renderIcons()}
-      <button onClick={()=>setNumberQuestion(numberQuestion+1)}>Cli</button>
+      <Content>
+        {renderIcons()}
+        <CardQuestion question={questions[numberQuestion]} />
+      </Content>
     </Container>
   )
 }
