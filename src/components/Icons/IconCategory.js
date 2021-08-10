@@ -10,14 +10,29 @@ const Div = styled.div`
     color: ${props=>props.color==='#000'? '#000' : '#00c2ff'};
     margin-top: 10px;
   }
+  margin: 0 20px;
 `
 
-export default function IconCategory({name, category}){
-  const includes = (geral=false)=>{
-    if(geral) return '#00c2ff'
+const categories = {
+  celebrities : (category)=>category.toLowerCase().includes('celebrities'),
+  entertainment : (category)=>category.toLowerCase().includes('entertainment'),
+  geography : (category)=>category.toLowerCase().includes('geography'),
+  science : (category)=>category.toLowerCase().includes('science'),
+  sports: (category)=>category.toLowerCase().includes('sports')
+}
 
-    if(category.toLowerCase().includes(name))return '#00c2ff'
-    else return '#000'
+export default function IconCategory({name, category}){
+  const includes = ()=>{
+    if(categories.hasOwnProperty(name)){
+      if(categories[name](category))return '#00c2ff'
+      else return '#000'
+    }
+    else{
+      for(const verify in categories){
+        if(categories[verify](category))return '#000'
+      }
+      return '#00c2ff'
+    }
   }
 
   switch (name){
@@ -99,25 +114,6 @@ export default function IconCategory({name, category}){
           <p>Science</p>
         </Div>
       )
-    case 'question':
-      return (
-        <Div color={includes()}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill={includes()}>
-            <g id="Layer_2" data-name="Layer 2">
-              <g id="Layer_1-2" data-name="Layer 1">
-                <path className="cls-1"
-                      d="M32,64A32,32,0,1,1,64,32,32,32,0,0,1,32,64ZM32,5.33A26.67,26.67,0,1,0,58.67,32,26.71,26.71,0,0,0,32,5.33Z"
-                />
-                <path className="cls-1"
-                      d="M32,45.33a2.67,2.67,0,0,1-2.67-2.66,14.1,14.1,0,0,1,6.9-11.88,8,8,0,0,0,3.55-8.71A8,8,0,0,0,24,24a2.67,2.67,0,1,1-5.33,0,13.29,13.29,0,0,1,5-10.43A13.43,13.43,0,0,1,35.11,11a13.34,13.34,0,0,1,4,24.3,8.78,8.78,0,0,0-4.39,7.35A2.67,2.67,0,0,1,32,45.33Z"
-                />
-                <circle className="cls-1" cx="32" cy="50.67" r="2.67"/>
-              </g>
-            </g>
-          </svg>
-          <p>General</p>
-        </Div>
-      )
     case 'sports':
       return (
         <Div color={includes()}>
@@ -135,6 +131,25 @@ export default function IconCategory({name, category}){
             <line className="st0" x1="15" y1="19" x2="17" y2="19"/>
           </svg>
           <p>Sports</p>
+        </Div>
+      )
+    case 'default':
+      return (
+        <Div color={includes()}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill={includes()}>
+            <g id="Layer_2" data-name="Layer 2">
+              <g id="Layer_1-2" data-name="Layer 1">
+                <path className="cls-1"
+                      d="M32,64A32,32,0,1,1,64,32,32,32,0,0,1,32,64ZM32,5.33A26.67,26.67,0,1,0,58.67,32,26.71,26.71,0,0,0,32,5.33Z"
+                />
+                <path className="cls-1"
+                      d="M32,45.33a2.67,2.67,0,0,1-2.67-2.66,14.1,14.1,0,0,1,6.9-11.88,8,8,0,0,0,3.55-8.71A8,8,0,0,0,24,24a2.67,2.67,0,1,1-5.33,0,13.29,13.29,0,0,1,5-10.43A13.43,13.43,0,0,1,35.11,11a13.34,13.34,0,0,1,4,24.3,8.78,8.78,0,0,0-4.39,7.35A2.67,2.67,0,0,1,32,45.33Z"
+                />
+                <circle className="cls-1" cx="32" cy="50.67" r="2.67"/>
+              </g>
+            </g>
+          </svg>
+          <p>General</p>
         </Div>
       )
   }
