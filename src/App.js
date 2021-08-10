@@ -1,8 +1,11 @@
 import Routes from "./Routes/Routes";
+import Global from "./Context/Global";
 
 function App() {
   return (
-    <Routes/>
+    <Global>
+      <Routes/>
+    </Global>
   )
 }
 
