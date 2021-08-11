@@ -37,6 +37,7 @@ export default function Home(){
     e.preventDefault()
     if(amount<=0){
       alert('Please, you need to answer at least one question')
+      return
     }
     toPlay()
   }
