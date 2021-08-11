@@ -8,7 +8,11 @@ import useCoordinator from "../../hooks/useCoordinator";
 const ContainerIcons = styled.section`
   article{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
   }
+  width: 100%;
 `
 
 const Content = styled.div`

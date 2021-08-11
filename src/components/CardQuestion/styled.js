@@ -3,9 +3,8 @@ import styled from "styled-components";
 export const Content = styled.article`
   display: flex;
   flex-direction: column;
-  width: 800px;
   max-width: 800px;
-  min-width: 500px;
+  min-width: 350px;
   min-height: 300px;
   max-height: 350px;
 `
