@@ -6,6 +6,8 @@ export const Content = styled.article`
   width: 800px;
   max-width: 800px;
   min-width: 500px;
+  min-height: 300px;
+  max-height: 350px;
 `
 
 export const Text = styled.p`

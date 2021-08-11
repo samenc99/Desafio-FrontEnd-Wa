@@ -1,10 +1,22 @@
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 import useCoordinator from "../../hooks/useCoordinator";
+import CardQuestion from "../../components/CardQuestion/CardQuestion";
+import CardQuestionSolved from "../../components/CardQuestionSolved/CardQuestionSolved";
+import Container from "../../styled-components/Container";
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+const H1 = styled.h1`
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  padding: 20px 0;
 `
 
 export default function Report(){
@@ -20,9 +32,25 @@ export default function Report(){
     setQAs(newQAs)
   },[])
 
-  console.log(QAs)
+  const renderQAs = ()=>{
+    return QAs.map((qa,index)=>{
+      return <CardQuestionSolved qa={qa} key={index}/>
+    })
+  }
+
+  const QAsCorrects = ()=>{
+    if(QAs.length===0)return <></>
+    let numberCorrects = 0
+    QAs.forEach(qa=>{
+      if(qa.user===qa.correct)numberCorrects+=1
+    })
+    return <H1>You got {numberCorrects} questions right</H1>
+  }
 
   return(
-    <div>Report</div>
+    <Content>
+      {QAsCorrects()}
+      {renderQAs()}
+    </Content>
   )
 }
