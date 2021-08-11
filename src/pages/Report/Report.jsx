@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 import useCoordinator from "../../hooks/useCoordinator";
-import CardQuestion from "../../components/CardQuestion/CardQuestion";
 import CardQuestionSolved from "../../components/CardQuestionSolved/CardQuestionSolved";
-import Container from "../../styled-components/Container";
+import Button from '@material-ui/core/Button';
 
 const Content = styled.div`
   display: flex;
@@ -17,6 +16,11 @@ const H1 = styled.h1`
   height: 100px;
   text-align: center;
   padding: 20px 0;
+`
+
+const MyButton = styled(Button)`
+  margin-bottom: 20px;
+  font-weight: bold;
 `
 
 export default function Report(){
@@ -50,6 +54,7 @@ export default function Report(){
   return(
     <Content>
       {QAsCorrects()}
+      <MyButton variant="contained" onClick={toHome}>Start again</MyButton>
       {renderQAs()}
     </Content>
   )
