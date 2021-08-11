@@ -13,9 +13,9 @@ const Content = styled.div`
 
 const H1 = styled.h1`
   width: 100%;
-  height: 100px;
   text-align: center;
-  padding: 20px 0;
+  padding: 10px 0;
+  color: #44495A;
 `
 
 const MyButton = styled(Button)`
@@ -48,7 +48,10 @@ export default function Report(){
     QAs.forEach(qa=>{
       if(qa.user===qa.correct)numberCorrects+=1
     })
-    return <H1>You got {numberCorrects} questions right</H1>
+    return <>
+      <H1>You got {numberCorrects} questions right out of {QAs.length} questions</H1>
+      <H1>You missed {QAs.length-numberCorrects} questions right of {QAs.length} questions</H1>
+    </>
   }
 
   return(
