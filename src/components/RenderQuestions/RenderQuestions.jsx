@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import IconCategory from "../Icons/IconCategory";
 import Container from "../../styled-components/Container";
 import styled from "styled-components";
+import useCoordinator from "../../hooks/useCoordinator";
 
 const ContainerIcons = styled.section`
   article{
@@ -17,7 +18,7 @@ const Content = styled.div`
 
 export default function RenderQuestions({questions}){
   const [numberQuestion, setNumberQuestion] = useState(0);
-
+  const {toReport} = useCoordinator()
   const renderIcons = ()=>{
     return(
      <ContainerIcons>
@@ -34,7 +35,9 @@ export default function RenderQuestions({questions}){
   }
 
   const onClickNext = ()=>{
-    setNumberQuestion(numberQuestion+1)
+    const newNumberQuestion = numberQuestion+1
+    if(newNumberQuestion>=questions.length)toReport()
+    setNumberQuestion(newNumberQuestion)
   }
 
   useEffect(()=>{
@@ -44,16 +47,8 @@ export default function RenderQuestions({questions}){
   return (
     <Container>
       <Content>
-        {
-          numberQuestion<questions.length?(
-            <>
-              {renderIcons()}
-              <CardQuestion question={questions[numberQuestion]} next={onClickNext}/>
-            </>
-          ):(
-            <></>
-          )
-        }
+        {renderIcons()}
+        <CardQuestion question={questions[numberQuestion]} next={onClickNext}/>
       </Content>
     </Container>
   )
