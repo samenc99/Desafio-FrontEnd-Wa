@@ -1,4 +1,4 @@
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -19,11 +19,15 @@ const useStyles = makeStyles((theme) => ({
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 `
 
 export default function Home(){
   const {amount, setAmount} = useContext(Context)
-  const {toPlay} = useCoordinator()
+  const {toPlay, toReport} = useCoordinator()
+  const [report, setReport] = useState(false);
+  const classes = useStyles();
+
   const onChangeAmount = (e)=>{
     const {value} = e.target
     if(value>0)setAmount(value)
@@ -37,7 +41,11 @@ export default function Home(){
     toPlay()
   }
 
-  const classes = useStyles();
+  useEffect(()=>{
+    const QAs = window.localStorage.getItem('QAs')
+    if(QAs)setReport(true)
+  },[])
+
   return (
     <Container>
       <Form className={classes.root} autoComplete={'off'}>
@@ -53,6 +61,13 @@ export default function Home(){
         />
         <Button variant="contained" color="primary" onClick={onSubmitForm}>OK</Button>
       </Form>
+      {
+        report?(
+          <Button variant={'contained'} onClick={toReport}>Show report</Button>
+        ):(
+          <></>
+        )
+      }
     </Container>
   )
 
