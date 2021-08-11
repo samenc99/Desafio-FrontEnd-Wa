@@ -22,6 +22,11 @@ export const Alternative = styled.div`
   border: 1px solid #eee;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  transition: background-color 500ms;
+  :hover {
+    background-color: #e8e8e8;
+  }
 `
 
 export const Letter = styled.p`

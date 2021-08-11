@@ -56,13 +56,13 @@ export default function IconCategory({name, category}){
                viewBox="0 0 32 32"
                fill={includes()}
           >
-            <circle class="st0" cx="9" cy="7" r="5"/>
-            <circle class="st0" cx="19" cy="7" r="5"/>
-            <path class="st0" d="M21,25H7c-1.1,0-2-0.9-2-2v-6c0-1.1,0.9-2,2-2h14c1.1,0,2,0.9,2,2v6C23,24.1,22.1,25,21,25z"/>
-            <polygon class="st0" points="29,25 23,22 23,18 29,15 "/>
-            <polyline class="st0" points="10,31 14,25 18,31 "/>
-            <circle class="st0" cx="9" cy="7" r="1"/>
-            <circle class="st0" cx="19" cy="7" r="1"/>
+            <circle className="st0" cx="9" cy="7" r="5"/>
+            <circle className="st0" cx="19" cy="7" r="5"/>
+            <path className="st0" d="M21,25H7c-1.1,0-2-0.9-2-2v-6c0-1.1,0.9-2,2-2h14c1.1,0,2,0.9,2,2v6C23,24.1,22.1,25,21,25z"/>
+            <polygon className="st0" points="29,25 23,22 23,18 29,15 "/>
+            <polyline className="st0" points="10,31 14,25 18,31 "/>
+            <circle className="st0" cx="9" cy="7" r="1"/>
+            <circle className="st0" cx="19" cy="7" r="1"/>
           </svg>
           <p>Entertainment</p>
         </Div>
@@ -119,8 +119,8 @@ export default function IconCategory({name, category}){
         <Div color={includes()}>
           <svg version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                viewBox="0 0 32 32"
-               fill='none' stroke={includes()} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-               stroke-miterlimit="10"
+               fill='none' stroke={includes()} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+               strokeMiterlimit="10"
           >
             <circle className="st0" cx="17" cy="21" r="10"/>
             <polyline className="st0" points="10.4,13.5 8,1 26,1 23.6,13.5 "/>
@@ -133,7 +133,7 @@ export default function IconCategory({name, category}){
           <p>Sports</p>
         </Div>
       )
-    case 'default':
+    default:
       return (
         <Div color={includes()}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill={includes()}>

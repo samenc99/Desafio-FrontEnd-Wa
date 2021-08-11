@@ -17,7 +17,7 @@ const Content = styled.div`
   }
 `
 
-export default function (){
+export default function Play(){
   const {toHome, toQuestions} = useCoordinator()
 
   return(

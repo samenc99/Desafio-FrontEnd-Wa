@@ -33,11 +33,27 @@ export default function RenderQuestions({questions}){
     )
   }
 
+  const onClickNext = ()=>{
+    setNumberQuestion(numberQuestion+1)
+  }
+
+  useEffect(()=>{
+    window.localStorage.removeItem('QAs')
+  },[])
+
   return (
     <Container>
       <Content>
-        {renderIcons()}
-        <CardQuestion question={questions[numberQuestion]} />
+        {
+          numberQuestion<questions.length?(
+            <>
+              {renderIcons()}
+              <CardQuestion question={questions[numberQuestion]} next={onClickNext}/>
+            </>
+          ):(
+            <></>
+          )
+        }
       </Content>
     </Container>
   )

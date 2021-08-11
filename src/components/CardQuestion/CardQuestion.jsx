@@ -7,53 +7,66 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export default function CardQuestion({question}){
-  const [numberCorrect, setNumberCorrect] = useState();
-  const [render, setRender] = useState([]);
-  const LENGTH_INCORRECTS = question.incorrect_answers.length
+export default function CardQuestion({question, next}){
+  const [answers, setAnswers] = useState();
+  const LENGTH_INCORRECT = question.incorrect_answers.length
 
   const randomAnswer = ()=>{
-
-    const answers = {}
-    let random = getRandomIntInclusive(0,LENGTH_INCORRECTS)
-    if(random>LENGTH_INCORRECTS || random<0)random=0
-    for(let i =0; i<LENGTH_INCORRECTS+1; i++){
+    const newAnswers = {}
+    let random = getRandomIntInclusive(0,LENGTH_INCORRECT)
+    if(random>LENGTH_INCORRECT || random<0)random=0
+    for(let i =0; i<LENGTH_INCORRECT+1; i++){
       if(random>0){
-        answers[i] = question.incorrect_answers[random-1]
+        newAnswers[i] = question.incorrect_answers[random-1]
       }
       else{
-        answers[i] = question.correct_answer
-        answers.correct = i
+        newAnswers[i] = question.correct_answer
+        newAnswers.correct = i
       }
-      if(random===LENGTH_INCORRECTS)random=0
+      if(random===LENGTH_INCORRECT)random=0
       else random+=1
     }
-    return answers
+    setAnswers(newAnswers)
   }
   const renderAnswer = ()=>{
-    const answers = randomAnswer()
+    if(!answers)return <></>
     const render = []
-    for(let i=0; i<LENGTH_INCORRECTS+1; i++){
+    for(let i=0; i<LENGTH_INCORRECT+1; i++){
       render.push(
-        <Alternative key={i}>
-          <Letter>{i}</Letter>
+        <Alternative key={i+1} onClick={()=>onClickAlternative(i)}>
+          <Letter>{i+1}</Letter>
           <p>{answers[i]}</p>
         </Alternative>
       )
     }
-    return {render, correct: answers.correct}
+    return render
+  }
+
+  const onClickAlternative = (i)=>{
+    let QAs = JSON.parse(window.localStorage.getItem('QAs'))
+    if(!Array.isArray(QAs))QAs = []
+    const QA = {
+      question: question.question,
+      0 : answers[0],
+      1 : answers[1],
+      2 : answers[2],
+      3 : answers[3],
+      correct : answers.correct,
+      user: i
+    }
+    QAs.push(QA)
+    window.localStorage.setItem('QAs', JSON.stringify(QAs))
+    next()
   }
 
   useEffect(()=>{
-    const r = renderAnswer()
-    setRender(r.render)
-    setNumberCorrect(r.correct)
+    randomAnswer()
   },[question])
 
   return (
     <Content>
       <Text>{question.question}</Text>
-      {render}
+      {renderAnswer()}
     </Content>
   )
 }
