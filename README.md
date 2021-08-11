@@ -1,5 +1,8 @@
 # Desafio - Front End
 
+![desafio-front-wa](https://user-images.githubusercontent.com/77743802/128965083-a3107721-ebe5-4d3a-b2ad-5967e572ceba.png)
+
+
 ## Sumário
 
 - [Descrição do problema](#descrição-do-problema)
