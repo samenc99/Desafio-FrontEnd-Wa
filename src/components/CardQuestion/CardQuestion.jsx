@@ -45,12 +45,14 @@ export default function CardQuestion({question, next}){
   const onClickAlternative = (i)=>{
     let QAs = JSON.parse(window.localStorage.getItem('QAs'))
     if(!Array.isArray(QAs))QAs = []
+    const answersQA = []
+    for(let i =0; i<LENGTH_INCORRECT+1; i++){
+      answersQA.push(answers[i])
+    }
+
     const QA = {
       question: question.question,
-      0 : answers[0],
-      1 : answers[1],
-      2 : answers[2],
-      3 : answers[3],
+      answersQA,
       correct : answers.correct,
       user: i
     }
